@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+  
+<body>
+    
+    <div class="container">
+        <!-- <h1>Appointment Form</h1> -->
+        <form action="" class="cform">
+            
+            <label for="Name" class="">Name</label>
+            <input type="text" id="Name" placeholder="Enter Your Name....">
+
+            <label for="Email">Email</label>
+            <input type="text" id="Email" placeholder="Enter Your Email...">
+
+            <label for="Contact">Contact Number</label>
+            <input type="text" id="Contact" placeholder="Enter Your Contact number...">
+
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" placeholder="Enter Your Appointment Date ">
+
+            <label for="message">Message</label>
+            <textarea name="message" id="message" placeholder="Enter Your Appointment Time"></textarea>
+            <input type="button" id="cappointment" value="Confirm Appointment" onclick="Send()">
+        </form>
+    </div>
+
+
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+
+        function Send(){
+
+          
+           var name = document.getElementById("Name").value;
+           var email = document.getElementById("Email").value;
+           var contact = document.getElementById("Contact").value;
+           var sub = document.getElementById("subject").value;
+           var mess = document.getElementById("message").value;
+
+           var body = "Name: " + name + "<br/> Email:" + email + "<br/> Contact Number:" + contact + "<br/> Message:" + mess;
+            
+           console.log(body);
+            Email.send({
+             SecureToken: "da31fa16-0800-473b-9838-0e5c06460c10",
+             To : 'dakshtitarmare2006@gmail.com',
+             From : "sundarmadavi22@gmail.com",
+             Subject :  sub,
+             Body :  body
+            }).then(
+                message =>{
+                    if(message=='OK'){
+
+                        swal("Successfull", "Your Data Successfull Received", "success");
+                    }
+                    else{
+
+                        swal("Something Wrong", "Your Data is not Received", "error");
+                    }
+                }
+              );
+
+            
+        
+        }
+
+       
+
+    </script>
+</body>
+</html>
